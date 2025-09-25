@@ -11,7 +11,7 @@ export interface PostModalProps {
 export interface ButtonProps {
   shape: "rounded-sm" | "rounded-md" | "rounded-full";
   size: "small" | "medium" | "large";
-  children: React.ReactNode;
+  children?: React.ReactNode;
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
 }
@@ -42,7 +42,7 @@ export interface Company {
 }
 
 export interface UserProps {
-  id: number;
+  id?: number;
   name: string;
   username: string;
   email: string;

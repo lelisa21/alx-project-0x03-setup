@@ -1,13 +1,8 @@
 import { UserProps } from "@/interfaces";
 import { Building, Mail, MapPin, Phone, User } from "lucide-react";
 
-interface UserCardProps {
-  user: UserProps;
-  key?: string | number;
-}
+const UserCard: React.FC<UserProps> = ({name , email , phone , address , company }) => {
 
-const UserCard: React.FC<UserCardProps> = ({ user }) => {
-  const { name, address, email, phone, company } = user;
 
   return (
     <div>

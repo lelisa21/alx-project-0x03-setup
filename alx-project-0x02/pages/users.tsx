@@ -1,44 +1,44 @@
 import UserCard from "@/components/common/UserCard";
-import { GetStaticProps } from "next";
-import { UserProps } from "@/interfaces";
 import Header from "@/components/layout/Header";
+import { UserProps } from "@/interfaces";
 
-const Users = ({ users }: { users: UserProps[] }) => {
+const Users: React.FC<{ users: UserProps[] }> = ({ users }) => {
   return (
-    <div>
+    <div className="flex flex-col h-screen">
       <Header />
-      <h1 className="text-3xl font-bold m-5 text-center">Users</h1>
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {users.map((user) => (
-          <UserCard key={user.id} user={user} />
-        ))}
-      </div>
+      <main className="p-4">
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-semibold">Users</h1>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {users.map((user) => (
+            <UserCard
+              key={user.id}
+              name={user.name}
+              phone={user.phone}
+              address={user.address}
+              username={user.username}
+              email={user.email}
+              company={user.company}
+              website={user.website}
+            />
+          ))}
+        </div>
+      </main>
     </div>
   );
 };
 
-export const getStaticProps: GetStaticProps<{
-  users: UserProps[];
-}> = async () => {
-  try {
-    const res = await fetch("https://jsonplaceholder.typicode.com/users");
-    if (!res.ok) {
-      throw new Error(`HTTP Request Failed status: ${res.status}`);
-    }
-    const users: UserProps[] = await res.json();
+export async function getStaticProps() {
+  const response = await fetch("https://jsonplaceholder.typicode.com/users");
+  const users = await response.json();
 
-    return {
-      props: {
-        users,
-      },
-      revalidate: 60,
-    };
-  } catch (error) {
-    console.error("Error fetching users:", error);
-    return {
-      notFound: true,
-    };
-  }
-};
+  return {
+    props: {
+      users,
+    },
+  };
+}
 
 export default Users;
