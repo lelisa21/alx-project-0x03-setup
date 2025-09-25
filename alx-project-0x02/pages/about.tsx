@@ -3,7 +3,7 @@ import Header from '@/components/layout/Header'
 
 const About = () => {
   return (
-     <div className="container">
+     <div>
       <Header />
       <h1 className="text-3xl font-bold pl-3 my-4">About Job Explorer</h1>
       <p className="mb-6">
