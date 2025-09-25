@@ -13,14 +13,21 @@ const Home: React.FC = () => {
   };
   return (
     <div>
-      
-      <Header /> 
+      <Header />
       <h1 className="text-2xl text-center m-5">
         Welcome To Home Page Explore Your Job
       </h1>
-      <button onClick={() => setIsModalOpen(true)}
-        className="px-4 py-2 rounded-2xl bg-green-500 text-xl text-white cursor-pointer hover:bg-green-500/80 mx-18 mb-16">Add New Post</button>
-      <PostModal isOpen = {isModalOpen} onClose={() => setIsModalOpen(false)} onSubmit={handleSubmit}/>
+      <button
+        onClick={() => setIsModalOpen(true)}
+        className="px-4 py-2 rounded-2xl bg-green-500 text-xl text-white cursor-pointer hover:bg-green-500/80 mx-18 mb-16"
+      >
+        Add New Post
+      </button>
+      <PostModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handleSubmit}
+      />
       <div className="grid gap-3 text-center">
         <Card
           title="Frontend Developer"
@@ -34,8 +41,8 @@ const Home: React.FC = () => {
           title="Software Developer"
           content="A software developer is a generalist term for a professional who designs, writes, and maintains software. This can range from developing mobile apps to operating systems."
         />
-        {posts.map((post , index) => (
-            <Card key={index} title = {post.title} content={post.content} />
+        {posts.map((post, index) => (
+          <Card key={index} title={post.title} content={post.content} />
         ))}
       </div>
     </div>

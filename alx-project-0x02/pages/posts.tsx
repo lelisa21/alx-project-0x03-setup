@@ -3,7 +3,7 @@ import Header from "@/components/layout/Header";
 import { PostProps } from "@/interfaces";
 import { GetStaticProps } from "next";
 
-const Posts = ({ posts }: { posts: PostProps[] }) =>{
+const Posts = ({ posts }: { posts: PostProps[] }) => {
   return (
     <div>
       <Header />
@@ -22,15 +22,17 @@ const Posts = ({ posts }: { posts: PostProps[] }) =>{
   );
 };
 
-export const getStaticProps: GetStaticProps<{ posts: PostProps[] }> = async () => {
-  const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+export const getStaticProps: GetStaticProps<{
+  posts: PostProps[];
+}> = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
   const posts: PostProps[] = await res.json();
 
   return {
     props: {
       posts,
     },
-    revalidate: 60, 
+    revalidate: 60,
   };
 };
 export default Posts;

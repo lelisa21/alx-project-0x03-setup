@@ -27,17 +27,18 @@ const Users = ({ users }: { users: UserProps[] }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps<{ users: UserProps[] }> = async () => {
-  const res = await fetch('https://jsonplaceholder.typicode.com/users');
+export const getStaticProps: GetStaticProps<{
+  users: UserProps[];
+}> = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
   const users: UserProps[] = await res.json();
 
   return {
     props: {
       users,
     },
-    revalidate: 60, 
+    revalidate: 60,
   };
 };
-
 
 export default Users;
